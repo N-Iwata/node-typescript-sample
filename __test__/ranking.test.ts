@@ -1,4 +1,4 @@
-import { ranking } from "../ranking";
+import { ranking } from "../src/ranking";
 
 describe("", () => {
   test("", () => {

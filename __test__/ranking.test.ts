@@ -1,7 +1,7 @@
-import { ranking } from "../src/ranking";
+import { getRankArrayOfNumbers } from "../src/ranking";
 
 describe("", () => {
   test("", () => {
-    expect(ranking([1, 2, 5, 5])).toEqual([4, 3, 1, 1]);
+    expect(getRankArrayOfNumbers([1, 2, 5, 5])).toEqual([4, 3, 1, 1]);
   });
 });

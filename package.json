@@ -23,7 +23,7 @@
   "lint-staged": {
     "*.{ts,tsx}": [
       "bash -c 'npm run compile'",
-      "git add ."
+      "git add dist"
     ]
   }
 }

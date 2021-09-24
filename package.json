@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "description": "sample package",
   "main": "dist/app.js",
+  "types": "dist/app.d.ts",
   "scripts": {
     "test": "jest --watchAll --verbose --coverage",
     "start": "nodemon dist/app.js",

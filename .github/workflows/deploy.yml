@@ -25,6 +25,15 @@ jobs:
         run: npm install
       - name: Version update
         run: npm version prerelease --preid=rc --no-git-tag-version
+      - name: git setting
+        run: |
+          git config --local user.email "nobuhito323@gmail.com"
+          git config --local user.name "Nobuhito Iwata"
+      - name: Commit files
+        run: |
+          git add .
+          git commit -m "Upgrade version of package.json"
+          git push origin HEAD  
       - name: Publish
         run: npm publish --tag=legacy
         env:

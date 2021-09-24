@@ -1,16 +1,24 @@
 {
-  "name": "node-typescript-sample",
+  "name": "@n-iwata/node-typescript-sample",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "sample package",
+  "main": "dist/app.js",
   "scripts": {
     "test": "jest --watchAll --verbose --coverage",
     "start": "nodemon dist/app.js",
-    "compile": "npx tsc"
+    "compile": "npx tsc",
+    "prepublishOnly": "npm run compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/N-Iwata/node-typescript-sample.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Nobuhito Iwata",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@types/jest": "^26.0.22",
     "husky": "^7.0.0",

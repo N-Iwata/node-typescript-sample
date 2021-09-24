@@ -1,6 +1,6 @@
 {
   "name": "@n-iwata/node-typescript-sample",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "sample package",
   "main": "dist/app.js",
   "scripts": {
@@ -33,5 +33,6 @@
       "bash -c 'npm run compile'",
       "git add dist"
     ]
-  }
+  },
+  "dependencies": {}
 }

@@ -23,8 +23,8 @@ jobs:
           registry-url: https://npm.pkg.github.com
       - name: Install dependecies
         run: npm install
-      - name: Build
-        run: npm run compile
+      - name: Version update
+        run: npm version prerelease --preid=rc
       - name: Publish
         run: npm publish
         env:

@@ -24,7 +24,7 @@ jobs:
       - name: Install dependecies
         run: npm install
       - name: Version update
-        run: npm version prerelease --preid=rc    
+        run: npm version prerelease --preid=rc --no-git-tag-version
       - name: Publish
         run: npm publish --tag=legacy
         env:

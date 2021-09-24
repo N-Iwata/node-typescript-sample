@@ -25,6 +25,8 @@ jobs:
         run: npm install
       - name: Version update
         run: npm version prerelease --preid=rc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish
         run: npm publish
         env:

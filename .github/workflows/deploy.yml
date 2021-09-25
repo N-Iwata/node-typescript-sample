@@ -27,8 +27,8 @@ jobs:
         run: npm version prerelease --preid=rc --no-git-tag-version
       - name: git setting
         run: |
-          git config --local user.email "nobuhito323@gmail.com"
-          git config --local user.name "Nobuhito Iwata"
+          git config user.email "<>"
+          git config user.name "GitHub Actions Bot"
       - name: Commit files
         run: |
           git add .

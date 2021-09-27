@@ -21,9 +21,21 @@ jobs:
         with:
           node-version: "14"
           registry-url: https://npm.pkg.github.com
+      - name: Can Publish
+        run: npx can-npm-publish --verbose
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
       - name: Install
         run: npm install
-      - name: Publish
-        run: npx can-npm-publish --verbose && npm publish --tag=legacy
+      - name: set version to env
+        run: node -p -e '`VERSION=${require("./package.json").version}`' >> $GITHUB_ENV  
+      - name: Publish rc
+        if: github.event_name == 'pull_request' && contains(env.VERSION, 'rc')
+        run: npm publish --tag=legacy
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish release
+        if: github.event_name == 'push' && contains(env.VERSION, 'rc') == false
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

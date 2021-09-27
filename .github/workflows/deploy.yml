@@ -33,7 +33,7 @@ jobs:
       #     git config user.email "<>"
       #     git config user.name "GitHub Actions Bot"
       
-      - name: Publish- name: Commit files
+      - name: Publish
         run: npx can-npm-publish --verbose && npm publish --tag=legacy
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

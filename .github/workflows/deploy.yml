@@ -30,7 +30,7 @@ jobs:
       - name: set version to env
         run: node -p -e '`VERSION=${require("./package.json").version}`' >> $GITHUB_ENV  
       - name: Publish rc
-        if: github.event_name == 'pull_request' && contains(env.VERSION, "rc")
+        if: github.event_name == 'pull_request' && contains(env.VERSION, 'rc')
         run: npm publish --tag=legacy
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -21,14 +21,35 @@ jobs:
         with:
           node-version: "14"
           registry-url: https://npm.pkg.github.com
+      
+      - name: Install
+        run: npm install
+      - name: git setting
+        run: |
+          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
+          git config user.email "<>"
+          git config user.name "GitHub Actions Bot"    
+      - name: Version update pull requests
+        if: github.event_name == 'pull_request'
+        run: |
+          npm version preminor --preid=rc --no-git-tag-version
+          git branch
+          git add .
+          git commit -m 'Update version'
+          git push
+      - name: Version update merge
+        if: github.event_name == 'push'
+        run: | 
+          npm version minor --no-git-tag-version
+          git add .
+          git commit -m 'Update version'
+          git push origin main
       - name: Can Publish
         run: npx can-npm-publish --verbose
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
-      - name: Install
-        run: npm install
       - name: set version to env
-        run: node -p -e '`VERSION=${require("./package.json").version}`' >> $GITHUB_ENV  
+        run: node -p -e '`VERSION=${require("./package.json").version}`' >> $GITHUB_ENV      
       - name: Publish rc
         if: github.event_name == 'pull_request' && contains(env.VERSION, 'rc')
         run: npm publish --tag=legacy
@@ -39,15 +60,6 @@ jobs:
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # - name: add version tag
-      #   if: github.event_name == 'push' && contains(env.VERSION, 'rc') == false
-      #   uses: pkgdeps/git-tag-action@v2
-      #   with:
-      #     version: ${{ env.VERSION }}
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     github_repo: ${{ github.repository }}
-      #     git_commit_sha: ${{ github.sha }}
-      #     git_tag_prefix: "v"    
       - name: Create release
         if: github.event_name == 'push' && contains(env.VERSION, 'rc') == false
         id: create_release

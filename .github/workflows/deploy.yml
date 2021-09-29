@@ -26,6 +26,7 @@ jobs:
         run: npm install
       - name: git setting
         run: |
+          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
           git config user.email "<>"
           git config user.name "GitHub Actions Bot"    
       - name: Version update pull requests

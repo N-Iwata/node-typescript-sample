@@ -29,10 +29,10 @@ jobs:
           git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
           git config user.email "<>"
           git config user.name "GitHub Actions Bot"    
-      # - name: Version update pull requests
-      #   if: github.event_name == 'pull_request'
-      #   run: |
-      #     npm version preminor --preid=rc --no-git-tag-version
+      - name: Version update pull requests
+        if: github.event_name == 'pull_request'
+        run: |
+          npm version ${GITHUB_SHA}    
       - name: Version update merge
         if: github.event_name == 'push'
         run: | 
@@ -67,3 +67,6 @@ jobs:
           release_name: Release v${{ env.VERSION }}
           draft: false
           prerelease: false
+
+
+          

@@ -29,14 +29,10 @@ jobs:
           git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
           git config user.email "<>"
           git config user.name "GitHub Actions Bot"    
-      - name: Version update pull requests
-        if: github.event_name == 'pull_request'
-        run: |
-          npm version preminor --preid=rc --no-git-tag-version
-          git add .
-          git commit -m 'Update version'
-          git pull origin ${GITHUB_HEAD_REF} --allow-unrelated-histories
-          git push origin HEAD:${GITHUB_HEAD_REF}
+      # - name: Version update pull requests
+      #   if: github.event_name == 'pull_request'
+      #   run: |
+      #     npm version preminor --preid=rc --no-git-tag-version
       - name: Version update merge
         if: github.event_name == 'push'
         run: | 

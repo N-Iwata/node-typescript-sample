@@ -35,6 +35,7 @@ jobs:
           npm version preminor --preid=rc --no-git-tag-version
           git add .
           git commit -m 'Update version'
+          git pull
           git push origin HEAD:${GITHUB_REF}
       - name: Version update merge
         if: github.event_name == 'push'
@@ -42,6 +43,7 @@ jobs:
           npm version minor --no-git-tag-version
           git add .
           git commit -m 'Update version'
+          git pull
           git push origin main
       - name: Can Publish
         run: npx can-npm-publish --verbose

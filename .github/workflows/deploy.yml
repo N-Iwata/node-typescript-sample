@@ -33,6 +33,7 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           npm version preminor --preid=rc --no-git-tag-version
+          git branch
           git add .
           git commit -m 'Update version'
           git push origin ${{github.head_ref}}

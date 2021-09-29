@@ -1,6 +1,6 @@
 {
   "name": "@n-iwata/node-typescript-sample",
-  "version": "3.9.0",
+  "version": "3.10.0",
   "description": "sample package",
   "main": "dist/app.js",
   "types": "dist/app.d.ts",
@@ -35,8 +35,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "bash -c 'npm run compile'",
-      "git add dist"
+      "bash -c 'npm run compile'"
     ]
   },
   "dependencies": {}

@@ -35,13 +35,6 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           npm version ${{ env.VERSION }}-${GITHUB_SHA}    
-      - name: Version update merge
-        if: github.event_name == 'push'
-        run: | 
-          npm version minor --no-git-tag-version
-          git add .
-          git commit -m 'Update version'
-          git push origin main
       - name: Can Publish
         run: npx can-npm-publish --verbose
         env:

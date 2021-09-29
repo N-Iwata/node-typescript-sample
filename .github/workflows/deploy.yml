@@ -35,7 +35,7 @@ jobs:
           npm version preminor --preid=rc --no-git-tag-version
           git add .
           git commit -m 'Update version'
-          git push origin test
+          git push origin ${{github.head_ref}}
       - name: Version update merge
         if: github.event_name == 'push'
         run: | 

@@ -47,17 +47,17 @@ jobs:
       - name: set version to env
         run: node -p -e '`VERSION=${require("./package.json").version}`' >> $GITHUB_ENV      
       - name: Publish rc
-        if: github.event_name == 'pull_request' && contains(env.VERSION, 'rc')
+        if: github.event_name == 'pull_request'
         run: npm publish --tag=legacy
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish release
-        if: github.event_name == 'push' && contains(env.VERSION, 'rc') == false
+        if: github.event_name == 'push'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create release
-        if: github.event_name == 'push' && contains(env.VERSION, 'rc') == false
+        if: github.event_name == 'push'
         id: create_release
         uses: actions/create-release@v1.0.0
         env:

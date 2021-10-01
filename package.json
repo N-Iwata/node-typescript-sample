@@ -1,6 +1,6 @@
 {
   "name": "@n-iwata/node-typescript-sample",
-  "version": "3.14.0",
+  "version": "3.15.0",
   "description": "sample package",
   "main": "dist/app.js",
   "types": "dist/app.d.ts",

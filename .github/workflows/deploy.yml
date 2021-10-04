@@ -5,6 +5,9 @@ env:
 
 on:
   pull_request:
+  push:
+    branches:
+      - release
 
 jobs:
   publish:
@@ -28,12 +31,30 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
       - name: Version update pull requests
+        if: github.event_name == 'pull_request'
         run: |
           npm version ${{ env.VERSION }}-${GITHUB_SHA} --no-git-tag-version   
       - name: Publish rc
+        if: github.event_name == 'pull_request'
         run: npm publish --tag=legacy
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+      - name: Publish release
+        if: github.event_name == 'push'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create release
+        if: github.event_name == 'push'
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.VERSION }}
+          release_name: Release v${{ env.VERSION }}
+          draft: false
+          prerelease: false
+
 
           

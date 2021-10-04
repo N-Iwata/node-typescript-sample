@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - release
+      - main
 
 jobs:
   publish:
@@ -40,12 +41,12 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish release
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/release'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create release
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/release'
         id: create_release
         uses: actions/create-release@v1.0.0
         env:

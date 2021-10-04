@@ -1,6 +1,6 @@
 {
   "name": "@n-iwata/node-typescript-sample",
-  "version": "3.17.0",
+  "version": "3.18.0",
   "description": "sample package",
   "main": "dist/app.js",
   "types": "dist/app.d.ts",
@@ -8,9 +8,9 @@
     "test": "jest --watchAll --verbose --coverage",
     "start": "nodemon dist/app.js",
     "compile": "npx tsc",
-    "version:major": "npm version major --preid=rc --no-git-tag-version",
-    "version:minor": "npm version minor --preid=rc --no-git-tag-version",
-    "version:patch": "npm version patch --preid=rc --no-git-tag-version",
+    "version:major": "npm version major --no-git-tag-version",
+    "version:minor": "npm version minor --no-git-tag-version",
+    "version:patch": "npm version patch --no-git-tag-version",
     "prepublishOnly": "npm run compile"
   },
   "repository": {

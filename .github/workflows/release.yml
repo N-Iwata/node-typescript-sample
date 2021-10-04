@@ -4,7 +4,9 @@ env:
   CI: true
 
 on:
-  pull_request:
+  push:
+    branches:
+      - release
 
 jobs:
   publish:
@@ -27,13 +29,20 @@ jobs:
         run: npx can-npm-publish --verbose
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
-      - name: Version update pull requests
-        run: |
-          npm version ${{ env.VERSION }}-${GITHUB_SHA} --no-git-tag-version   
-      - name: Publish rc
-        run: npm publish --tag=legacy
+      - name: Publish release
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.VERSION }}
+          release_name: Release v${{ env.VERSION }}
+          draft: false
+          prerelease: false
+
 
           

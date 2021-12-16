@@ -29,7 +29,7 @@ jobs:
           for n in {1..9}
           do
             echo "${active_apps[n]}"
-            if [[ "${active_apps}" == *"deploy2"* ]]
+            if [[ "${active_apps}" == *"deploy1"* ]]
             then
               
               exit 1    

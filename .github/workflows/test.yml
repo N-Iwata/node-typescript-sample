@@ -22,7 +22,7 @@ jobs:
           
           for n in {1..9}
           do
-            if [[ "${active_apps}" == *"deploy${n}"* ]]
+            if [[ "${active_apps}" == *"deploy1"* ]]
             then
               echo active_apps
               exit 1    

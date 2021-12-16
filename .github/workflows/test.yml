@@ -26,7 +26,7 @@ jobs:
           
           for n in {1..9}
           do
-            echo "{active_apps[n]}"
+            echo "${active_apps[n]}"
             if [[ "${active_apps}" == *"deploy2"* ]]
             then
               

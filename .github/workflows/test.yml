@@ -19,22 +19,18 @@ jobs:
       - name: Check pr title
         run: |
           active_apps=$(gh pr list --state=open | cat)
-          ARRAY=(item1 item2 item3 item4)
-          ARRAY[0]="ITEM1"
-          ARRAY[2]="ITEM3"
-          echo "ARRAY[0]: ${ARRAY[0]}"
-          echo "${active_apps[0]}"
-          echo "${active_apps[1]}"
+          current_devN="1" 
           
           for n in {1..9}
           do
             echo "${active_apps[n]}"
-            if [[ "${active_apps}" == *"deploy1"* ]]
+            if [[ "${active_apps}" == *"deploy${current_devN}"* ] && ["${active_apps}" == PR_TITLE]] 
             then
-              
+              echo "Same deploy-devN already exists"
               exit 1    
             fi
           done
           
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_TITLE: ${{ github.event.pull_request.title }}

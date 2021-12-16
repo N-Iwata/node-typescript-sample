@@ -19,12 +19,13 @@ jobs:
       - name: Check pr title
         run: |
           active_apps=$(gh pr list --state=open | cut -f2 | grep -o -E "deploy[1-9]" | cat)
-          echo "{active_apps}"
+          
           for n in {1..9}
           do
+            echo "{active_apps[n]}"
             if [[ "${active_apps}" == *"deploy1"* ]]
             then
-              echo active_apps
+              
               exit 1    
             fi
           done

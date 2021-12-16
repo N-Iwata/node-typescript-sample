@@ -1,0 +1,22 @@
+name: publish my library
+
+env:
+  CI: true
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  title-check:
+    name: Setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check pr title
+        run: |
+          active_apps=$(gh pr list --state=open | cut -f2 | grep -o -E "deploy[1-9]" | cat)
+          exit 1

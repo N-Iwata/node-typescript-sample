@@ -19,11 +19,15 @@ jobs:
       - name: Check pr title
         run: |
           active_apps=$(gh pr list --state=open | cut -f2 | grep -o -E "deploy[1-9]" | cat)
+          ARRAY=(item1 item2 item3 item4)
+          ARRAY[0]="ITEM1"
+          ARRAY[2]="ITEM3"
+          echo "ARRAY[0]: ${ARRAY[0]}"
           
           for n in {1..9}
           do
             echo "{active_apps[n]}"
-            if [[ "${active_apps}" == *"deploy1"* ]]
+            if [[ "${active_apps}" == *"deploy2"* ]]
             then
               
               exit 1    

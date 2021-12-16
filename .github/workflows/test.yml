@@ -20,3 +20,5 @@ jobs:
         run: |
           active_apps=$(gh pr list --state=open | cut -f2 | grep -o -E "deploy[1-9]" | cat)
           exit 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

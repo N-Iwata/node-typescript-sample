@@ -18,12 +18,13 @@ jobs:
         uses: actions/checkout@v2
       - name: Check pr title
         run: |
-          active_apps=$(gh pr list --state=open | cut -f2 | grep -o -E "deploy[1-9]" | cat)
+          active_apps=$(gh pr list --state=open | cat)
           ARRAY=(item1 item2 item3 item4)
           ARRAY[0]="ITEM1"
           ARRAY[2]="ITEM3"
           echo "ARRAY[0]: ${ARRAY[0]}"
           echo "${active_apps[0]}"
+          echo "${active_apps[1]}"
           
           for n in {1..9}
           do

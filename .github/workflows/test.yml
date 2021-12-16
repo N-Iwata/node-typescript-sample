@@ -23,6 +23,7 @@ jobs:
           ARRAY[0]="ITEM1"
           ARRAY[2]="ITEM3"
           echo "ARRAY[0]: ${ARRAY[0]}"
+          echo "${active_apps[0]}"
           
           for n in {1..9}
           do

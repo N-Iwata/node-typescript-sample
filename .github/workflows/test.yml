@@ -19,7 +19,7 @@ jobs:
       - name: Check pr title
         run: |
           active_apps=$(gh pr list --state=open | cut -f2 | cat)
-          pr_title=PR_TITLE | grep -o -E "deploy[1-9] | cat
+          pr_title=${PR_TITLE} | grep -o -E "deploy[1-9] | cat
           echo "${pr_title}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

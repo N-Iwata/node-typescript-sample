@@ -23,6 +23,7 @@ jobs:
           echo ${deployN}
           for n in {1..9}
           do
+            echo ${active_apps}
             if [[ “${active_apps}” != ${PR_TITLE} ]] && [[ “${active_apps}” == *${deployN}* ]]
             then
               echo “${active_apps} already exists”

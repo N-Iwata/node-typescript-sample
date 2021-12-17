@@ -24,7 +24,7 @@ jobs:
           for n in {1..9}
           do
             echo "${active_apps[n]}"
-            if [[ "${active_apps}" == *"deploy${current_devN}"* ]] && ["${active_apps}" == PR_TITLE] 
+            if [[ "${active_apps}" == *"deploy${current_devN}"* ]]
             then
               echo "Same deploy-devN already exists"
               exit 1    

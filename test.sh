@@ -1,8 +1,8 @@
 #!/bin/bash
 
 active_apps=("[deploy1]aaa" "[deploy2]bbb")
-deployN="deploy2"
-PR_TITLE="[deploy2]bbb"
+deployN="deploy3"
+PR_TITLE="[deploy3]bbb"
 
 
 for n in "${active_apps[@]}"

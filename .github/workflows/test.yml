@@ -25,6 +25,10 @@ jobs:
           do
             if [ "${n}" != "${PR_TITLE}" ] && [[ ${n} == *${deployN}* ]]
             then
+                echo "${n}"
+                echo "${PR_TITLE}"
+                echo "${deployN}"
+
                 echo “${deployN} already exists”
                 exit 1    
             fi

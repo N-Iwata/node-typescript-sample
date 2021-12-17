@@ -19,11 +19,11 @@ jobs:
       - name: Check pr title
         run: |
           active_apps=$(gh pr list --state=open | cut -f2 | cat)
-          echo "${PR_TITLE}"
+          echo "PR_TITLE : ${PR_TITLE}"
           
           for n in {1..9}
           do
-            echo "${active_apps[n]}"
+            echo "active_apps: ${active_apps[n]}"
             if [[ "${active_apps}" == *"deploy${current_devN}"* ]]
             then
               echo "Same deploy-devN already exists"

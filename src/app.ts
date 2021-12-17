@@ -5,3 +5,4 @@ console.log(getRankArrayOfNumbers([80, 65, 90, 50]));
 console.log(getRankArrayOfNumbers([80, 80, 70, 50]));
 console.log(getRankArrayOfNumbers([80, 80, 80, 50]));
 //test
+//test

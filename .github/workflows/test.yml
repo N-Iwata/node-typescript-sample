@@ -26,7 +26,7 @@ jobs:
             if [[ “${active_apps}” != ${PR_TITLE} ]]; then
             echo "OK1"
             fi
-            if [[ “${active_apps}” == *“${deployN}“* ]]; then
+            if [[ “${active_apps}” == *${deployN}* ]]; then
             echo "OK2"
             fi
             if [[ “${active_apps}” != ${PR_TITLE} ]] && [[ “${active_apps}” == *“${deployN}“* ]]

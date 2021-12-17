@@ -25,7 +25,7 @@ jobs:
           do
             if [[ “${active_apps}” != ${PR_TITLE} ]] && [[ “${active_apps}” == *${deployN}* ]]
             then
-              echo “Same deploy-devN already exists”
+              echo “${active_apps} already exists”
               exit 1    
             fi
           done

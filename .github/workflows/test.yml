@@ -20,6 +20,10 @@ jobs:
         run: |
           active_apps=$(gh pr list --state=open | cut -f2 | cat)
           echo "${active_apps}"
+          echo "${active_apps[0]}"
+          echo "${active_apps[1]}"
+          echo "${active_apps[2]}"
+          echo "${active_apps[3]}"
           deployN=$(echo "${PR_TITLE}" | grep -o "deploy[0-9]" | cat)
           # for i in "${!active_apps[@]}"
           # do

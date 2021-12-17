@@ -19,16 +19,16 @@ jobs:
       - name: Check pr title
         run: |
           active_apps=$(gh pr list --state=open | cut -f2 | cat)
-          pr_title=$(echo "${PR_TITLE}" | grep -o "deploy[0-9]" | cat)
-          echo "${pr_title}"
-          # for n in {1..9}
-          # do
-          #   if [[ “${active_apps}” != ${PR_TITLE} ]] && [[ “${active_apps}” == *“${pr_title}“* ]]
-          #   then
-          #     echo “Same deploy-devN already exists”
-          #     exit 1    
-          #   fi
-          # done
+          devN=$(echo "${PR_TITLE}" | grep -o "deploy[0-9]" | cat)
+          
+          for n in {1..9}
+          do
+            if [[ “${active_apps}” != ${PR_TITLE} ]] && [[ “${active_apps}” == *“${devN}“* ]]
+            then
+              echo “Same deploy-devN already exists”
+              exit 1    
+            fi
+          done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_TITLE: ${{ github.event.pull_request.title }}

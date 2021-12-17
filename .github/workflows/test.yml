@@ -24,11 +24,11 @@ jobs:
           for n in "${active_apps[@]}"
           do
             echo ${n}
-            # if [[ “${active_apps[n]}” != ${PR_TITLE} ]] && [[ “${active_apps[n]}” == *${deployN}* ]]
-            # then
-            #   echo “${active_apps[n]} already exists”
-            #   exit 1    
-            # fi
+            if [[ “${n}}” != ${PR_TITLE} ]] && [[ “${n}” == *${deployN}* ]]
+            then
+              echo “${m} already exists”
+              exit 1    
+            fi
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

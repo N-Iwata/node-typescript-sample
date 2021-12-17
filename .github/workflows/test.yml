@@ -21,14 +21,14 @@ jobs:
           active_apps=$(gh pr list --state=open | cut -f2 | cat)
           deployN=$(echo "${PR_TITLE}" | grep -o "deploy[0-9]" | cat)
           echo ${deployN}
-          for n in {1..9}
+          for n in "${active_apps[@]}"
           do
-            echo ${active_apps[n]}
-            if [[ “${active_apps[n]}” != ${PR_TITLE} ]] && [[ “${active_apps[n]}” == *${deployN}* ]]
-            then
-              echo “${active_apps[n]} already exists”
-              exit 1    
-            fi
+            echo ${n}
+            # if [[ “${active_apps[n]}” != ${PR_TITLE} ]] && [[ “${active_apps[n]}” == *${deployN}* ]]
+            # then
+            #   echo “${active_apps[n]} already exists”
+            #   exit 1    
+            # fi
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

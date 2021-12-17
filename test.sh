@@ -1,7 +1,7 @@
 #!/bin/bash
 
 active_apps=("[deploy1]aaa" "[deploy2]bbb")
-PR_TITLE="[deploy3]aaaa"
+PR_TITLE="[deploy2]aaaa"
 deployN=$(echo "${PR_TITLE}" | grep -o "deploy[0-9]" | cat)
 
 # for n in "${active_apps[@]}"
@@ -25,11 +25,22 @@ deployN=$(echo "${PR_TITLE}" | grep -o "deploy[0-9]" | cat)
 # fi
 # done
 
-for ((i = 0; i < ${#active_apps[@]}; i++)) {
+for i in "${!active_apps[@]}"
+do
     echo "${active_apps[${i}]}"
     if [ "${active_apps[${i}]}" != "${PR_TITLE}" ] && [[ "${active_apps[${i}]}" == *${deployN}* ]]
-then
-    echo “${deployN} already exists”
-    exit 1    
-fi
-}
+    then
+        echo “${deployN} already exists”
+        exit 1    
+    fi
+done
+
+
+# for ((i = 0; i < ${!active_apps[@]}; i++)) {
+#     echo "${active_apps[${i}]}"
+#     if [ "${active_apps[${i}]}" != "${PR_TITLE}" ] && [[ "${active_apps[${i}]}" == *${deployN}* ]]
+# then
+#     echo “${deployN} already exists”
+#     exit 1    
+# fi
+# }

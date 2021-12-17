@@ -24,13 +24,7 @@ jobs:
           
           for n in "${active_apps[@]}"
           do
-            if [ ${n} != ${PR_TITLE} ]; then
-                echo 'ok1'
-            fi
-            if [[ ${n} == *${deployN}* ]]; then
-                echo 'ok2'
-            fi
-            if [ ${n} != ${PR_TITLE} ] && [[ ${n} == *${deployN}* ]]
+            if [ "${n}"" != "${PR_TITLE}"" ] && [[ ${n} == *${deployN}* ]]
             then
                 echo “${deployN} already exists”
                 exit 1    

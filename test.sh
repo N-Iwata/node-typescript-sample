@@ -1,7 +1,7 @@
 #!/bin/bash
 
-active_apps=("[deploy1]aaa" "[deploy2]bbb")
-PR_TITLE="[deploy2]aaaa"
+active_apps=("[deploy3]aaa" "[deploy2]bbb")
+PR_TITLE="[deploy2]bbb"
 deployN=$(echo "${PR_TITLE}" | grep -o "deploy[0-9]" | cat)
 
 # for n in "${active_apps[@]}"

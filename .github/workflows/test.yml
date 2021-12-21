@@ -18,19 +18,25 @@ jobs:
         uses: actions/checkout@v2
       - name: Check pr title
         run: |
-          active_apps=$(gh pr list --state=open | cut -f2 | cat)
-          IFS='
-          '
-          active_apps_array=($active_apps)
-          deployN=$(echo "${PR_TITLE}" | grep -o "deploy[0-9]" | cat)
+          deploy_devN=$(echo "${PR_TITLE}" | grep -o "deploy-dev[0-9]" | cat)
+          num_of_devN=$(gh pr list --state=open | grep ${deploy_devN} | wc -l)
+          if [[ $num_of_devN -ge 2 ]]; then
+            echo “${deploy_devN} already exists”
+            exit 1    
+          fi
+          # active_apps=$(gh pr list --state=open | cut -f2 | cat)
+          # IFS='
+          # '
+          # active_apps_array=($active_apps)
+          # deployN=$(echo "${PR_TITLE}" | grep -o "deploy[0-9]" | cat)
           
-          for ((i = 0; i < ${#active_apps_array[@]}; i++)) {
-            if [ "${active_apps_array[i]}" != "${PR_TITLE}" ] && [[ "${active_apps_array[i]}" == *${deployN}* ]]
-            then
-              echo “${deployN} already exists”
-              exit 1    
-            fi
-          }
+          # for ((i = 0; i < ${#active_apps_array[@]}; i++)) {
+          #   if [ "${active_apps_array[i]}" != "${PR_TITLE}" ] && [[ "${active_apps_array[i]}" == *${deployN}* ]]
+          #   then
+          #     echo “${deployN} already exists”
+          #     exit 1    
+          #   fi
+          # }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_TITLE: ${{ github.event.pull_request.title }}

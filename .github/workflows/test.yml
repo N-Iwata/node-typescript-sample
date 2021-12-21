@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Check pr title
         run: |
-          deployN=$(echo "${PR_TITLE}" | grep -o "deploy[0-9]" | cat)
+          deploy_devN=$(echo "${PR_TITLE}" | grep -o "deploy-dev[0-9]" | cat)
           num_of_devN=$(gh pr list --state=open | grep ${deploy_devN} | wc -l)
           if [[ $num_of_devN -ge 2 ]]; then
             echo “${deploy_devN} already exists”
